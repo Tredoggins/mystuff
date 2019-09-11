@@ -4,11 +4,11 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class RoomWriter {
-    public static void writeRoomFile(String fileName, List<Room> roomList) throws IOException {
+    public static void writeRoomFile(String fileName, List<Paintable> roomList) throws IOException {
         FileOutputStream file = new FileOutputStream(fileName);
         ObjectOutputStream out = new ObjectOutputStream(file);
-        for(Room room:roomList) {
-            out.writeObject(room);
+        for(Paintable thing:roomList) {
+            out.writeObject(thing);
         }
         out.close();
         file.close();

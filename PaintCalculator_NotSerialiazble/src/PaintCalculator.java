@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class PaintCalculator {
 
-    private List<Room> roomList = new ArrayList<Room>();
+    private List<Paintable> roomList = new ArrayList<Paintable>();
     private Scanner keyboard;
 
     public static void main(String[] args) {
@@ -29,17 +29,20 @@ public class PaintCalculator {
                         createRoom();
                         break;
                     case 2:
+                        createDoor();
+                        break;
+                    case 3:
                         // writeFile();
                         RoomWriter.writeRoomFile("file.txt",roomList);
                         break;
-                    case 3:
+                    case 4:
                         // readFile();
                         roomList.addAll(RoomReader.readRoomFile("file.txt"));
                         break;
-                    case 4:
+                    case 5:
                         printRooms();
                         break;
-                    case 5:
+                    case 6:
                         System.out.println("Goodbye");
                         System.exit(0);
                 }
@@ -55,18 +58,19 @@ public class PaintCalculator {
             System.out.println("No rooms yet");
         }
 
-        for (Room room : roomList) {
-            System.out.println(room.toString());
+        for (Paintable thing : roomList) {
+            System.out.println(thing.toString());
         }
     }
 
     private void printMenu() {
         System.out.println();
         System.out.println("1. Add room");
-        System.out.println("2. Write rooms to file");
-        System.out.println("3. Read rooms from file");
-        System.out.println("4. View rooms");
-        System.out.println("5. Exit");
+        System.out.println("2. Add door");
+        System.out.println("3. Write rooms/doors to file");
+        System.out.println("4. Read rooms/doors from file");
+        System.out.println("5. View rooms/doors");
+        System.out.println("6. Exit");
         System.out.println();
     }
 
@@ -94,5 +98,17 @@ public class PaintCalculator {
             System.out.println("Could not create room.");
         }
 
+    }
+    private void createDoor(){
+        int length=promptForDimension("length");
+        int width=promptForDimension("width");
+        try{
+            Door door=new Door(length,width);
+            System.out.println("Door Created");
+
+        }
+        catch (Exception e){
+
+        }
     }
 }
